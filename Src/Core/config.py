@@ -13,6 +13,10 @@ NOTEBOOKS_DIR: Path = BASE_DIR / "Notebooks"
 REPORTS_DIR: Path = BASE_DIR / "Reports"
 FIGURES_DIR: Path = REPORTS_DIR / "Figures"
 
+RANDOM_STATE: int = 42
+TEST_SIZE: float = 0.2
+N_JOBS: int = -1
+
 LEXICAL_FEATURES: list[str] = [
     "url_length",
     "url_letters_count",
