@@ -49,5 +49,25 @@ LEXICAL_FEATURES: list[str] = [
     "query_sensitive_words_count",
 ]
 
+HOSTING_FEATURES: list[str] = [
+    "is_ip_host",
+    "is_hex_octal_dword_ip",
+    "is_non_standard_port",
+    "domain_length",
+    "domain_dots_count",
+    "domain_has_hyphen",
+    "domain_digits_count",
+    "domain_entropy",
+    "subdomain_levels",
+    "subdomain_length",
+    "registered_domain_len",
+    "is_risky_tld",
+    "is_free_hosting",
+    "has_punycode",
+    "is_url_shortener",
+    "brand_in_subdomain",
+    "domain_sensitive_words_count",
+]
+
 
 
