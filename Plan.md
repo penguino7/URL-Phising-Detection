@@ -38,7 +38,9 @@
        * `Data/External/shorteners.txt`: Danh sách tên miền rút gọn từ PeterDaveHello/url-shorteners.
        * `Data/External/target_brands.txt`: Danh sách 181+ thương hiệu từ USENIX Security 2021 Phishpedia + Ngân hàng VN.
        * `Data/External/sensitive_keywords.txt`: Danh sách từ khóa nhạy cảm lọc từ Information Gain / Chi-Square.
-     * `Src/Core/constants.py` chỉ làm nhiệm vụ nạp file một lần duy nhất lúc khởi động hệ thống vào bộ nhớ dưới dạng `frozenset` với tốc độ tìm kiếm tức thì $O(1)$ (~50-80 nanoseconds), đảm bảo code siêu tinh gọn và dễ dàng bảo trì, cập nhật.
+     * `Src/Core/helpers.py`: Cung cấp hàm tiện ích `load_set_from_file()` đọc các tệp text từ `Data/External/` và tự động làm sạch (loại bỏ comment `#`, chuẩn hóa chữ thường).
+     * `Src/Core/constants.py`: Nạp dữ liệu một lần duy nhất lúc khởi động hệ thống vào bộ nhớ dưới dạng `frozenset` với tốc độ tìm kiếm tức thì $O(1)$ (~50-80 nanoseconds), đảm bảo code siêu tinh gọn và dễ dàng bảo trì, cập nhật.
+     * *Cơ chế nhận diện Cloud Free Hosting:* Không cần hardcode danh sách thủ công mà được nhận diện tự động và khách quan 100% thông qua cơ chế phân tách Private Suffix của **Mozilla Public Suffix List** bằng thư viện `tldextract` trong `Src/Core/url_parser.py`.
 
 ---
 
@@ -99,9 +101,10 @@ flowchart TD
 ### Giai đoạn 1: Chuẩn hóa Nền tảng & Tiền Xử Lý Dữ Liệu
 - [x] Thiết lập tệp [requirements.txt](file:///d:/ML%20trong%20ph%C3%A1t%20hi%E1%BB%87n%20URL%20Phishing/requirements.txt) (`pandas`, `numpy`, `tldextract`, `scikit-learn`, `joblib`, `matplotlib`, `seaborn`).
 - [x] Làm sạch dữ liệu thô tại [`Notebooks/CleanRawData.ipynb`](file:///d:/ML%20trong%20ph%C3%A1t%20hi%E1%BB%87n%20URL%20Phishing/Notebooks/CleanRawData.ipynb), xuất 235.370 URL sạch sang [`Data/Interim/urls_cleaned.csv`](file:///d:/ML%20trong%20ph%C3%A1t%20hi%E1%BB%87n%20URL%20Phishing/Data/Interim/urls_cleaned.csv).
-- [ ] Khởi tạo 4 tệp từ điển đối chiếu chuẩn hóa tại `Data/External/` (`risky_tlds.txt`, `shorteners.txt`, `target_brands.txt`, `sensitive_keywords.txt`).
-- [ ] Xây dựng `Src/Core/constants.py` định nghĩa các tập hợp hằng số $\mathcal{D}$ (đọc tự động từ `Data/External/` vào `frozenset` $O(1)$).
-- [ ] Xây dựng `Src/Core/config.py` cấu hình đường dẫn thư mục `Data/` (Raw, Interim, Processed, External).
+- [x] Khởi tạo 4 tệp từ điển đối chiếu chuẩn hóa tại [`Data/External/`](file:///d:/ML%20trong%20ph%C3%A1t%20hi%E1%BB%87n%20URL%20Phishing/Data/External/) (`risky_tlds.txt`, `shorteners.txt`, `target_brands.txt`, `sensitive_keywords.txt`).
+- [x] Xây dựng [`Src/Core/config.py`](file:///d:/ML%20trong%20ph%C3%A1t%20hi%E1%BB%87n%20URL%20Phishing/Src/Core/config.py) cấu hình đường dẫn thư mục `Data/` (Raw, Interim, Processed, External) tối giản.
+- [x] Xây dựng [`Src/Core/helpers.py`](file:///d:/ML%20trong%20ph%C3%A1t%20hi%E1%BB%87n%20URL%20Phishing/Src/Core/helpers.py) (hàm tiện ích nạp `load_set_from_file`).
+- [x] Xây dựng [`Src/Core/constants.py`](file:///d:/ML%20trong%20ph%C3%A1t%20hi%E1%BB%87n%20URL%20Phishing/Src/Core/constants.py) định nghĩa các tập hợp hằng số $\mathcal{D}$ (đọc tự động từ `Data/External/` vào `frozenset` $O(1)$).
 - [ ] Xây dựng `Src/Core/url_parser.py` (Hàm `parse_url()` trả về Dataclass `ParsedURL` chuẩn RFC 3986 + PSL).
 - [ ] Xây dựng `Src/Data/loader.py` (`URLDataLoader`) nạp và chuẩn hóa dữ liệu thô.
 - [ ] Xây dựng `Src/Data/splitter.py` (`DomainGroupSplitter`) phân chia Train/Test theo Registered Domain chống rò rỉ dữ liệu.
