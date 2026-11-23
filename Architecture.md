@@ -16,7 +16,8 @@ ML trong phát hiện URL Phishing/
 ├── Architecture.md                 # Tài liệu đặc tả kiến trúc hệ thống và quy trình luồng
 ├── requirements.txt                # Danh mục các thư viện phụ thuộc của dự án
 │
-├── Data/                           # Quản lý vòng đời dữ liệu theo 3 cấp độ
+├── Data/                           # Quản lý vòng đời dữ liệu và từ điển đối chiếu
+│   ├── External/                   # Dữ liệu từ điển đối chiếu (Spamhaus risky TLDs, PeterDaveHello shorteners, keywords)
 │   ├── Raw/                        # Chứa tập URL thô (url, label) tải từ các nguồn Benchmark
 │   ├── Interim/                    # Dữ liệu trung gian sau khi làm sạch và chuẩn hóa format
 │   └── Processed/                  # Ma trận đặc trưng số học (40+ cột số) xuất ra từ Feature Pipeline
