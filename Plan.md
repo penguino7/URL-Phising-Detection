@@ -113,7 +113,7 @@ flowchart TD
 ### Giai đoạn 2: Hệ Thống Trích Xuất Đặc Trưng Hướng Đối Tượng (OOP)
 
 - [x] Xây dựng [`Src/Features/base.py`](file:///d:/ML%20trong%20ph%C3%A1t%20hi%E1%BB%87n%20URL%20Phishing/Src/Features/base.py) (Lớp trừu tượng `BaseFeatureExtractor(ABC)`).
-- [ ] Xây dựng `Src/Features/lexical.py` (`LexicalFeatureExtractor` - 20+ đặc trưng từ vựng).
+- [x] Xây dựng [`Src/Features/lexical.py`](file:///d:/ML%20trong%20ph%C3%A1t%20hi%E1%BB%87n%20URL%20Phishing/Src/Features/lexical.py) (`LexicalFeatureExtractor` - 33 đặc trưng từ vựng).
 - [ ] Xây dựng `Src/Features/hosting.py` (`HostingFeatureExtractor` - 20+ đặc trưng máy chủ).
 - [ ] Xây dựng `Src/Features/ngram_tfidf.py` (`NGramTfidfExtractor` - 300 đặc trưng N-gram ký tự).
 - [ ] Xây dựng `Src/Features/pipeline.py` (`FeaturePipeline` - Composite điều phối đơn lẻ và chạy song song đa tiến trình).
