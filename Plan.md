@@ -105,7 +105,7 @@ flowchart TD
 - [x] Xây dựng [`Src/Core/config.py`](file:///d:/ML%20trong%20ph%C3%A1t%20hi%E1%BB%87n%20URL%20Phishing/Src/Core/config.py) cấu hình đường dẫn thư mục `Data/` (Raw, Interim, Processed, External) tối giản.
 - [x] Xây dựng [`Src/Core/helpers.py`](file:///d:/ML%20trong%20ph%C3%A1t%20hi%E1%BB%87n%20URL%20Phishing/Src/Core/helpers.py) (hàm tiện ích nạp `load_set_from_file`).
 - [x] Xây dựng [`Src/Core/constants.py`](file:///d:/ML%20trong%20ph%C3%A1t%20hi%E1%BB%87n%20URL%20Phishing/Src/Core/constants.py) định nghĩa các tập hợp hằng số $\mathcal{D}$ (đọc tự động từ `Data/External/` vào `frozenset` $O(1)$).
-- [ ] Xây dựng `Src/Core/url_parser.py` (Hàm `parse_url()` trả về Dataclass `ParsedURL` chuẩn RFC 3986 + PSL).
+- [x] Xây dựng [`Src/Core/url_parser.py`](file:///d:/ML%20trong%20ph%C3%A1t%20hi%E1%BB%87n%20URL%20Phishing/Src/Core/url_parser.py) (Hàm `parse_url()` trả về Dataclass `ParsedURL` chuẩn RFC 3986 + PSL, chạy offline tốc độ cao ~67 us/URL).
 - [ ] Xây dựng `Src/Data/loader.py` (`URLDataLoader`) nạp và chuẩn hóa dữ liệu thô.
 - [ ] Xây dựng `Src/Data/splitter.py` (`DomainGroupSplitter`) phân chia Train/Test theo Registered Domain chống rò rỉ dữ liệu.
 
