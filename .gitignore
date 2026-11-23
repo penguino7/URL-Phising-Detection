@@ -59,6 +59,7 @@ ehthumbs.db
 *.tar.gz
 *.7z
 *.rar
+phiusiil+phishing+url+dataset/
 Data/Raw/*
 !Data/Raw/.gitkeep
 Data/Interim/*
