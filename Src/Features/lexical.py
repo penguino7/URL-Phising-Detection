@@ -1,6 +1,7 @@
 from collections import Counter
 import math
 import re
+from urllib.parse import unquote
 
 from Src.Core.config import LEXICAL_FEATURES
 from Src.Core.constants import SENSITIVE_KEYWORDS
@@ -48,16 +49,16 @@ class LexicalFeatureExtractor(BaseFeatureExtractor):
 
         first_proto_idx = url_lower.find("://")
         tail = url_lower[first_proto_idx + 3:] if first_proto_idx != -1 else url_lower
-        
-        has_misplaced_proto = 1 if ("http://" in tail or "https://" in tail) else 0
+        tail_decoded = unquote(tail)
+        has_misplaced_proto = 1 if ("http://" in tail_decoded or "https://" in tail_decoded) else 0
 
         path = parsed.path
         segments = [s for s in path.split("/") if s]
 
         query = parsed.query
         query_params = [p for p in query.split("&") if p]
-        query_lower = query.lower()
-        has_embedded_url = 1 if ("http://" in query_lower or "https://" in query_lower or "www." in query_lower) else 0
+        query_decoded = unquote(query.lower())
+        has_embedded_url = 1 if ("http://" in query_decoded or "https://" in query_decoded or "www." in query_decoded) else 0
 
         return {
             "url_length": url_len,
