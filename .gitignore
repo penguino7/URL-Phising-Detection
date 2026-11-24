@@ -67,8 +67,8 @@ Data/Interim/*
 Data/Processed/*
 !Data/Processed/.gitkeep
 # Documents & Papers
-Document/
 Documents/
+Plan.md
 
 # Trained Model Binaries (large files)
 Models/*
