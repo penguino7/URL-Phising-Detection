@@ -34,7 +34,14 @@ def parse_url(url: str) -> ParsedURL:
     has_scheme = "://" in url_clean
     url_for_parsing = url_clean if has_scheme else "http://" + url_clean
 
-    parsed = urlparse(url_for_parsing)
+    try:
+        parsed = urlparse(url_for_parsing)
+    except ValueError:
+        url_for_parsing = url_for_parsing.replace("[", "%5B").replace("]", "%5D")
+        try:
+            parsed = urlparse(url_for_parsing)
+        except Exception:
+            parsed = urlparse("http://invalid.url")
     host = parsed.hostname or ""
     actual_scheme = parsed.scheme.lower() if has_scheme else ""
 
@@ -51,12 +58,17 @@ def parse_url(url: str) -> ParsedURL:
         reg_domain = ext_private.registered_domain
     registered_domain = reg_domain.lower() if reg_domain else host.lower()
 
+    try:
+        port = parsed.port
+    except ValueError:
+        port = None
+
     return ParsedURL(
         raw_url=url_clean,
         scheme=actual_scheme,
         netloc=parsed.netloc,
         host=host.lower(),
-        port=parsed.port,
+        port=port,
         path=parsed.path,
         query=parsed.query,
         fragment=parsed.fragment,
